@@ -1,0 +1,17 @@
+<!-- templates/detail_page.html -->
+{% extends 'base.html' %}
+
+{% block title %}Detail Page{% endblock %}
+
+{% block content %}
+  <div>
+    <h2>Номер заказа: №{{ order.number_order }}</h2>
+    <p>Контрагент: {{ order.contractor }}</p>
+    <p>Описание: {{ order.description }}</p>
+    <p>Дата заказа: {{ order.date_order }}</p>
+    <p>Сумма: {{ order.price_order }} руб.</p>
+  </div>
+
+  <button type="submit"><a href="{% url 'update_url' order.pk %}">Изменить заказ</a></button>
+  <button type="submit"><a href="{% url 'delete_url' order.pk %}">Удалить заказ</a></button>
+{% endblock %}

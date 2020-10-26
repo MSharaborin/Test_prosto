@@ -1,0 +1,22 @@
+<!-- templates/order_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Order list Page{% endblock %}
+
+{% block content %}
+{% if orders %}
+    {% with orders.count as total_results %}
+      <h2>Всего заказов: {{ total_results }}</h2>
+    {% endwith %}
+    {% for order in orders %}
+        <a href="{% url 'detail_url' order.pk %}"><h4>Номер заказа: {{ order.number_order }}</h4></a>
+        <h4>Контрагент: {{ order.contractor }}</h4>
+        <h4>Текст заказа: {{ order.description }}</h4>
+        <h4>Дата заказа: {{ order.date_order }}</h4>
+        <h4>Сумма заказа: {{ order.price_order }} руб.</h4>
+    <br>
+    {% endfor %}
+{% else %}
+    <h4>Заказы не найдены</h4>
+{% endif %}
+{% endblock %}
